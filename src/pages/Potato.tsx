@@ -15,10 +15,12 @@ type Nutrient = {
 
 const Potato = () => {
   const [foods, setFoods] = useState<Food[]>([]);
+  const baseUrl = import.meta.env.VITE_API_BASE_URL;
   
   const fetchInfo = async () => {
     try {
-      const fetchResult = await axios.get(`http://localhost:8080/api/usda/search`)
+      console.log("Button clicked!");
+      const fetchResult = await axios.get(`${baseUrl}/api/usda/search`)
       // fetchResult.data.data.foods is the array of foods
       const foodList: Food[] = fetchResult.data.data.foods;
       // TODO make a single useState hook with both the calories and description to loop through it
