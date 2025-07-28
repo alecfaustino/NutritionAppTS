@@ -35,14 +35,20 @@ const Potato = () => {
 
       <button onClick={fetchInfo}>Fetch Info</button>
       <div>
-        {foods.map((food, index) => (
+        {foods.map((food, index) => {
+          const energy = food.foodNutrients.find((nutrient) => nutrient.nutrientName === "Energy");
+
+          return (
           <div key={index}>
             <p>Name:</p>
             <p>{food.description}</p>
             <p>Calories:</p>
-            <p>{food.foodNutrients[3].value} {food.foodNutrients[3].unitName}</p>
+            <p>{energy? `${energy.value} ${energy.unitName}` : "Calories not found"} 
+            </p>
           </div>
-        ))}
+
+          );
+        })}
       </div>
     </>
   )
