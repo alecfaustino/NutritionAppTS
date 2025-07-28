@@ -22,7 +22,8 @@ const Potato = () => {
       console.log("Button clicked!");
       const fetchResult = await axios.get(`${baseUrl}/api/usda/search`)
       // fetchResult.data.data.foods is the array of foods
-      const foodList: Food[] = fetchResult.data.data.foods;
+      // if not data is returned, foodList = [];
+      const foodList: Food[] = fetchResult?.data?.data?.foods ?? [];
       // TODO make a single useState hook with both the calories and description to loop through it
       setFoods(foodList);
     } catch (error) {
